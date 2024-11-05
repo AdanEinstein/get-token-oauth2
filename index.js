@@ -17,6 +17,8 @@ const client = new AuthorizationCode({
   auth: {
     tokenHost: "https://login.microsoftonline.com",
     tokenPath: `/${TENANT_ID}/oauth2/v2.0/token`,
+    authorizeHost: "https://login.microsoftonline.com",
+    authorizePath: `/${TENANT_ID}/oauth2/v2.0/authorize`,
   },
 });
 
@@ -30,7 +32,8 @@ const app = createServer(async (req, res) => {
         code
       });
       res.writeHead(200, {
-        "content-type": "application/json"
+        "content-type": "application/json",
+        "cache-control": "no-store"
       })
       res.end(JSON.stringify(accessToken.token))
       return
@@ -44,7 +47,11 @@ const app = createServer(async (req, res) => {
     redirect_uri: REDIRECT_URI,
   })
 
-  res.writeHead(302, { location: authorizationUri });
+  res.writeHead(302, { 
+    location: authorizationUri,
+    "cache-control": "no-store" 
+  });
+
   res.end();
 })
 
