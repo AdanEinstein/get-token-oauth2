@@ -1,0 +1,16 @@
+{
+  "name": "oauth2",
+  "version": "1.0.0",
+  "description": "Simple server to get access token for OAuth2",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file=.env index.js"
+  },
+  "keywords": [],
+  "author": "Adan Einstein",
+  "license": "ISC",
+  "dependencies": {
+    "simple-oauth2": "^5.1.0"
+  }
+}
