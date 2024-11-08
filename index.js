@@ -23,7 +23,7 @@ const client = new AuthorizationCode({
 });
 
 const app = createServer(async (req, res) => {
-  if (req.url.startsWith("/auth/redirect")){
+  if (req.url.startsWith(new URL(REDIRECT_URI).pathname)){
     try {
       const url = new URL(req.headers.host+req.url);
       const code = url.searchParams.get('code');
